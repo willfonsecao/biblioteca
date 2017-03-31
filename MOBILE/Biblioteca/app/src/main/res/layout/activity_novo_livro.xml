@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_novo_livro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stefanini.com.br.biblioteca.NovoLivroActivity">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/top"/>
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/top"
+        android:layout_marginTop="20dp"
+        android:textSize="15pt"
+        android:text="Novo Livro"/>
+
+    <LinearLayout
+        android:id="@+id/lineTopCateg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/titulo"
+        android:layout_marginTop="25dp"
+        android:background="@color/gray"/>
+    <LinearLayout
+        android:id="@+id/lineBottomCateg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/categoria"
+        android:background="@color/gray"/>
+    <TextView
+        android:id="@+id/categoria"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/lineTopCateg"
+        android:textColor="@color/link"
+        android:textSize="23dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="Selecione uma Categoria..."
+        android:onClick="selecionarCategoria"/>
+
+
+    <io.github.yuweiguocn.lib.squareloading.SquareLoading
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackTransparent"
+        app:squareColor="@android:color/white"
+        app:squareSize="12dp"
+        app:squareCorner="2dp"
+        app:dividerSize="2dp"
+        app:xCount="4"
+        app:yCount="3"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="stefanini.com.br.biblioteca.MenuActivity">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:src="@drawable/ic_tag"
+        android:layout_below="@+id/topBar"
+        android:layout_marginLeft="5dp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_logo"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/topBar"
+        android:layout_marginTop="5dp"/>
+
+</RelativeLayout>

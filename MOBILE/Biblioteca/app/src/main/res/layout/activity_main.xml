@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stefanini.com.br.biblioteca.MainActivity">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/top"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <RelativeLayout
+            android:id="@+id/barNovo"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <ImageView
+                android:id="@+id/novaCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_nova_categoria"
+                android:layout_marginLeft="10dp"
+                android:onClick="novaCategoria"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Nova Categoria"
+                android:layout_below="@+id/novaCategoria"
+                android:id="@+id/txtNovaCategoria"
+                android:onClick="novaCategoria"/>
+
+            <ImageView
+                android:id="@+id/novaEditora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_nova_editora"
+                android:layout_centerHorizontal="true"
+                android:onClick="novaEditora"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Nova Editora"
+                android:layout_below="@+id/novaEditora"
+                android:layout_centerHorizontal="true"
+                android:onClick="novaEditora"/>
+
+            <ImageView
+                android:id="@+id/novoLivro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_novo_livro"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:onClick="novoLivro"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Novo Livro"
+                android:layout_below="@+id/novoLivro"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                android:onClick="novoLivro"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:layout_below="@+id/barNovo"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <ImageView
+                android:id="@+id/verCategorias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ver_categorias"
+                android:layout_marginLeft="10dp"
+                android:onClick="verCategorias"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Ver Categorias"
+                android:layout_below="@+id/verCategorias"
+                android:onClick="verCategorias"/>
+
+            <ImageView
+                android:id="@+id/verEditoras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ver_editoras"
+                android:layout_centerHorizontal="true"
+                android:onClick="verEditoras"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Ver Editoras"
+                android:layout_below="@+id/verEditoras"
+                android:layout_centerHorizontal="true"
+                android:onClick="verEditoras"/>
+
+            <ImageView
+                android:id="@+id/verLivros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ver_livros"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:onClick="verLivros"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Ver Livros"
+                android:layout_below="@+id/verLivros"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="16dp"
+                android:onClick="verLivros"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

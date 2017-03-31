@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_nova_categoria_editora"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stefanini.com.br.biblioteca.NovaCategoriaEditora">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/top"/>
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/top"
+        android:layout_marginTop="20dp"
+        android:textSize="15pt"
+        android:text="Nova Categoria"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="textPersonName"
+        android:hint="Nome..."
+        android:paddingLeft="10dp"
+        android:ems="10"
+        android:layout_marginLeft="30dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/nomeEntidade"
+        android:background="@color/gray"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bt_salvar"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:onClick="salvar"/>
+
+
+</RelativeLayout>
