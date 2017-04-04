@@ -15,5 +15,5 @@ public interface LivroService {
     Call<List<Livro>> buscarTodos();
 
     @PUT("livros")
-    Call<Livro> salvarCategoria(@Body Livro livro);
+    Call<Livro> salvarLivro(@Body Livro livro);
 }

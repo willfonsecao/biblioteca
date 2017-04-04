@@ -1,11 +1,17 @@
 package stefanini.com.br.biblioteca;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.MyOptionsPickerView;
 
@@ -20,6 +26,7 @@ import model.Editora;
 import model.Livro;
 import service.CategoriaService;
 import service.EditoraService;
+import service.LivroService;
 import stefanini.com.br.biblioteca.picker.DatePickerFragment;
 import stefanini.com.br.biblioteca.picker.OnStepDataRequestedListener;
 import stefanini.com.br.biblioteca.picker.OnStepPickListener;
@@ -29,6 +36,8 @@ public class NovoLivroActivity extends AppCompatActivity {
 
     MyOptionsPickerView singlePicker;
     private boolean isCategoriaPicker = false;
+    private boolean isNovoAutor = false;
+    private boolean isNovoTitulo = false;
     List<Categoria> categorias = new ArrayList<>();
     List<Editora> editoras = new ArrayList<>();
     Livro novoLivro = new Livro();
@@ -36,10 +45,12 @@ public class NovoLivroActivity extends AppCompatActivity {
     TextView categoriaTitulo;
     TextView editoraTitulo;
     TwoStepPickerDialog pickThing = null;
+    EditText conteudo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        conteudo = (EditText) findViewById(R.id.conteudoModal);
         setContentView(R.layout.activity_novo_livro);
         categoriaTitulo = (TextView) findViewById(R.id.categoriaTxt);
         editoraTitulo = (TextView) findViewById(R.id.editoraTxt);
@@ -65,6 +76,72 @@ public class NovoLivroActivity extends AppCompatActivity {
         });
 
         new CategoriasConsumer().execute();
+    }
+
+    public void salvar(View v){
+        if(isLivroPopulado()){
+            new LivroConsumer().execute();
+        }else{
+            Toast.makeText(getApplicationContext(),"Preencha todos os filtros",Toast.LENGTH_LONG);
+        }
+    }
+
+    private boolean isLivroPopulado() {
+        return novoLivro.getCategoria() != null && novoLivro.getEditora() != null && novoLivro.getAutor() != null
+                && novoLivro.getDataPublicacao() != null && novoLivro.getPrefacio() != null && novoLivro.getTitulo() != null;
+    }
+
+    public void modalNovoAutor(View v){
+        this.isNovoAutor = true;
+        criarModal();
+    }
+    public void modalNovoTitulo(View v){
+        this.isNovoAutor = true;
+        criarModal();
+    }
+    public void modalNovoPrefacio(View v){
+        this.isNovoAutor = true;
+        criarModal();
+    }
+
+    private void criarModal() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.modal_novo_nome, null))
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        if(!(conteudo.getText() == null || conteudo.getText().equals(""))){
+                            if(isNovoAutor){
+                                TextView autor = (TextView)findViewById(R.id.autorTxt);
+                                autor.setText(conteudo.getText());
+                                autor.setTextColor(Color.BLACK);
+                                isNovoAutor = false;
+                                novoLivro.setAutor(conteudo.getText().toString());
+                            }else if(isNovoTitulo){
+                                TextView titulo = (TextView)findViewById(R.id.tituloTxt);
+                                titulo.setText(conteudo.getText());
+                                titulo.setTextColor(Color.BLACK);
+                                isNovoTitulo = false;
+                                novoLivro.setTitulo(conteudo.getText().toString());
+                            }else{
+                                TextView prefacio = (TextView)findViewById(R.id.prefacioTxt);
+                                prefacio.setText(conteudo.getText());
+                                prefacio.setTextColor(Color.BLACK);
+                                novoLivro.setPrefacio(conteudo.getText().toString());
+                            }
+                        }
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        isNovoAutor = false;
+                        isNovoTitulo = false;
+                    }
+                });
+
+        builder.create();
+        builder.show();
     }
 
     public void selecionarData(View v){
@@ -197,6 +274,26 @@ public class NovoLivroActivity extends AppCompatActivity {
             nomes.add(c.getNome());
         }
         return nomes;
+    }
+    private class LivroConsumer extends AsyncTask<Object, Object, Void> {
+        final LivroService livroService = HttpClientFactory.getHttpClient().create(LivroService.class);
+
+        @Override
+        protected Void doInBackground(Object... params) {
+            try {
+               livroService.salvarLivro(novoLivro).execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+        }
     }
 
 }

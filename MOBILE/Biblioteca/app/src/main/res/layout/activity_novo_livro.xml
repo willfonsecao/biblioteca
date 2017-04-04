@@ -11,6 +11,15 @@
         android:id="@+id/top"
         layout="@layout/top"/>
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bt_salvar"
+        android:layout_alignEnd="@+id/top"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="35dp"
+        android:onClick="salvar"/>
+
     <TextView
         android:id="@+id/titulo"
         android:layout_width="wrap_content"
@@ -101,7 +110,8 @@
         android:gravity="center"
         android:textAlignment="center"
         android:text="Digite um Autor..."
-        android:layout_below="@+id/lineBottomData"/>
+        android:layout_below="@+id/lineBottomData"
+        android:onClick="modalNovoAutor"/>
     <LinearLayout
         android:id="@+id/libeBottomAutor"
         android:layout_width="match_parent"
@@ -120,7 +130,8 @@
         android:gravity="center"
         android:textAlignment="center"
         android:text="Digite um Titulo..."
-        android:layout_below="@+id/libeBottomAutor"/>
+        android:layout_below="@+id/libeBottomAutor"
+        android:onClick="modalNovoTitulo"/>
     <LinearLayout
         android:id="@+id/libeBottomTitulo"
         android:layout_width="match_parent"
@@ -140,7 +151,8 @@
         android:gravity="center"
         android:textAlignment="center"
         android:text="Digite um Prefácio..."
-        android:layout_below="@+id/libeBottomTitulo"/>
+        android:layout_below="@+id/libeBottomTitulo"
+        android:onClick="modalNovoPrefacio"/>
     <LinearLayout
         android:id="@+id/libeBottomPrefacio"
         android:layout_width="match_parent"

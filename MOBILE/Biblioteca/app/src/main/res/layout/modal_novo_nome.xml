@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tituloModal"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/blue"
+        android:scaleType="center"
+        android:text="Novo Nome"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:padding="5dp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/conteudoModal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/ic_campo_texto"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:hint="Digite..." />
+
+</LinearLayout>

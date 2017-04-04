@@ -10,6 +10,15 @@
         android:id="@+id/top"
         layout="@layout/top"/>
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bt_salvar"
+        android:layout_alignEnd="@+id/top"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="20dp"
+        android:onClick="salvar"/>
+
     <TextView
         android:id="@+id/titulo"
         android:layout_width="wrap_content"
@@ -21,27 +30,22 @@
         android:text="Nova Categoria"/>
 
 
-    <EditText
-        android:layout_width="match_parent"
+    <ImageView
+        android:src="@drawable/ic_campo_texto"
+        android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+    <EditText
+        android:layout_width="325dp"
+        android:layout_height="45dp"
         android:inputType="textPersonName"
         android:hint="Nome..."
         android:paddingLeft="10dp"
         android:ems="10"
-        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/nomeEntidade"
-        android:background="@color/gray"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_bt_salvar"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:onClick="salvar"/>
-
+        android:id="@+id/nomeEntidade"/>
 
 </RelativeLayout>
