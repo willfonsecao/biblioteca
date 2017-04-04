@@ -20,6 +20,10 @@ import model.Editora;
 import model.Livro;
 import service.CategoriaService;
 import service.EditoraService;
+import stefanini.com.br.biblioteca.picker.DatePickerFragment;
+import stefanini.com.br.biblioteca.picker.OnStepDataRequestedListener;
+import stefanini.com.br.biblioteca.picker.OnStepPickListener;
+import stefanini.com.br.biblioteca.picker.TwoStepPickerDialog;
 
 public class NovoLivroActivity extends AppCompatActivity {
 
@@ -30,22 +34,43 @@ public class NovoLivroActivity extends AppCompatActivity {
     Livro novoLivro = new Livro();
     SquareLoading loading;
     TextView categoriaTitulo;
+    TextView editoraTitulo;
+    TwoStepPickerDialog pickThing = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_livro);
+        categoriaTitulo = (TextView) findViewById(R.id.categoriaTxt);
+        editoraTitulo = (TextView) findViewById(R.id.editoraTxt);
         singlePicker = new MyOptionsPickerView(NovoLivroActivity.this);
         loading = (SquareLoading) findViewById(R.id.loading);
         loading.setVisibility(View.VISIBLE);
-        categoriaTitulo = (TextView)findViewById(R.id.categoria);
+
+        categoriaTitulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCategoriaPicker = true;
+                createPicker();
+                pickThing.show();
+            }
+        });
+        editoraTitulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCategoriaPicker = false;
+                createPicker();
+                pickThing.show();
+            }
+        });
+
         new CategoriasConsumer().execute();
     }
 
-    public void selecionarCategoria(View v){
-        isCategoriaPicker = true;
-        createPicker();
-        singlePicker.show();
+    public void selecionarData(View v){
+        DatePickerFragment datePicker = new DatePickerFragment();
+        datePicker.campoTxt = (TextView)findViewById(R.id.dataTxt);
+        datePicker.show(getFragmentManager(),"Data de Publicação");
     }
 
     private void createPicker(){
@@ -56,26 +81,42 @@ public class NovoLivroActivity extends AppCompatActivity {
         }else{
             nomes = getNomesEditoras(new ArrayList<Editora>(editoras));
         }
-        items.addAll(nomes);
-        singlePicker.setPicker(items);
-        singlePicker.setTitle("Categorias");
-        singlePicker.setCyclic(false);
-        singlePicker.setSelectOptions(0);
-        singlePicker.setOnoptionsSelectListener(new MyOptionsPickerView.OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int option2, int options3) {
-                String nome = items.get(options1);
-                if(isCategoriaPicker){
-                    Categoria c = getCategoriaSelecionada(nome);
-                    categoriaTitulo.setText(c.getNome());
-                    categoriaTitulo.setTextColor(Color.BLACK);
-                    novoLivro.setCategoria(c);
-                }else{
-                    Editora e = getEditoraSelecionada(nome);
-                    novoLivro.setEditora(e);
-                }
-            }
-        });
+            pickThing = new TwoStepPickerDialog
+                .Builder(this)
+                .withBaseData(nomes)
+                .withOkButton("OK")
+                .withCancelButton("CANCELAR")
+                .withBaseOnLeft(false)
+                .withInitialBaseSelected(0)
+                .withInitialStepSelected(0)
+                    .withOnStepDataRequested(new OnStepDataRequestedListener() {
+                        @Override
+                        public List<String> onStepDataRequest(int baseDataPos) {
+                            return null;
+                        }
+                    })
+                .withDialogListener(new OnStepPickListener() {
+                    @Override
+                    public void onStepPicked(int step) {
+                        if (isCategoriaPicker) {
+                            Categoria c = categorias.get(step);
+                            novoLivro.setCategoria(c);
+                            categoriaTitulo.setText(c.getNome());
+                            categoriaTitulo.setTextColor(Color.BLACK);
+                            isCategoriaPicker = false;
+                        } else {
+                            Editora e = editoras.get(step);
+                            novoLivro.setEditora(e);
+                            editoraTitulo.setText(e.getNome());
+                            editoraTitulo.setTextColor(Color.BLACK);
+                        }
+                    }
+
+                    @Override
+                    public void onDismissed() {
+                    }
+                })
+                .build();
     }
 
     private class EditorasConsumer extends AsyncTask<Void, Void, List<Editora>> {
