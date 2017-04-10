@@ -1,6 +1,7 @@
 package com.br.stefanini.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "livro")
@@ -21,7 +25,7 @@ public class Livro {
 	@Column(name = "idlivro")
 	private Long id;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="idcategoria")
 	private Categoria categoria;
 	
@@ -39,6 +43,7 @@ public class Livro {
 	private String autor;
 
 	@Column(name = "datapublicacao")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date dataPublicacao;
 
 	public Long getId() {

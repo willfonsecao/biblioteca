@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Http.HttpClientFactory;
+import io.github.yuweiguocn.lib.squareloading.SquareLoading;
 import model.Categoria;
 import model.Editora;
 import service.CategoriaService;
@@ -18,11 +19,12 @@ import service.EditoraService;
 
 public class MainActivity extends AppCompatActivity {
 
+    SquareLoading loading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        loading = (SquareLoading) findViewById(R.id.loading);
     }
 
     public void novaCategoria(View v){
@@ -44,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void verCategorias(View view){
         ListActivity.isCategorias = true;
+        loading.setVisibility(View.VISIBLE);
         new CategoriasConsumer().execute();
     }
 
     public void verEditoras(View view){
+        loading.setVisibility(View.VISIBLE);
         new EditorasConsumer().execute();
     }
 
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Editora> editoras) {
             super.onPostExecute(editoras);
+            loading.setVisibility(View.GONE);
             Intent intent = new Intent(getApplicationContext(), ListActivity.class);
             intent.putExtra("EDITORAS", new ArrayList<Editora>(editoras));
             startActivity(intent);
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Categoria> categorias) {
             super.onPostExecute(categorias);
+            loading.setVisibility(View.GONE);
             Intent intent = new Intent(getApplicationContext(), ListActivity.class);
             intent.putExtra("CATEGORIAS", new ArrayList<Categoria>(categorias));
             startActivity(intent);

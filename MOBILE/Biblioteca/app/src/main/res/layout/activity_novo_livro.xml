@@ -12,6 +12,7 @@
         layout="@layout/top"/>
 
     <ImageView
+        android:id="@+id/btSalvar"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_bt_salvar"
@@ -20,148 +21,156 @@
         android:layout_marginRight="35dp"
         android:onClick="salvar"/>
 
-    <TextView
-        android:id="@+id/titulo"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/top"
-        android:layout_marginTop="20dp"
-        android:textSize="15pt"
-        android:text="Novo Livro"/>
+        android:layout_below="@+id/top">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/lineTopCateg"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/titulo"
-        android:layout_marginTop="25dp"
-        android:background="@color/gray"/>
-    <LinearLayout
-        android:id="@+id/lineBottomCateg"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/categoriaTxt"
-        android:background="@color/gray"/>
-    <TextView
-        android:id="@+id/categoriaTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@+id/lineTopCateg"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Selecione uma Categoria..."/>
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="15pt"
+                android:text="Novo Livro"/>
 
-    <TextView
-        android:id="@+id/editoraTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@+id/lineBottomCateg"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Selecione uma Editora..."/>
-    <LinearLayout
-        android:id="@+id/lineBottomEdit"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/editoraTxt"
-        android:background="@color/gray"/>
+            <LinearLayout
+                android:id="@+id/lineTopCateg"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/titulo"
+                android:layout_marginTop="25dp"
+                android:background="@color/gray"/>
+            <LinearLayout
+                android:id="@+id/lineBottomCateg"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/categoriaTxt"
+                android:background="@color/gray"/>
+            <TextView
+                android:id="@+id/categoriaTxt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/lineTopCateg"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Selecione uma Categoria..."/>
 
-    <TextView
-        android:id="@+id/dataTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@+id/lineBottomEdit"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Selecione a Data de Publicação..."
-        android:onClick="selecionarData"/>
-    <LinearLayout
-        android:id="@+id/lineBottomData"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:background="@color/gray"
-        android:layout_below="@+id/dataTxt"/>
+            <TextView
+                android:id="@+id/editoraTxt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/lineBottomCateg"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Selecione uma Editora..."/>
+            <LinearLayout
+                android:id="@+id/lineBottomEdit"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/editoraTxt"
+                android:background="@color/gray"/>
 
-    <TextView
-        android:id="@+id/autorTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Digite um Autor..."
-        android:layout_below="@+id/lineBottomData"
-        android:onClick="modalNovoAutor"/>
-    <LinearLayout
-        android:id="@+id/libeBottomAutor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:background="@color/gray"
-        android:layout_below="@+id/autorTxt"/>
+            <TextView
+                android:id="@+id/dataTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@+id/lineBottomEdit"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Selecione a Data de Publicação..."
+                android:onClick="selecionarData"/>
+            <LinearLayout
+                android:id="@+id/lineBottomData"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/gray"
+                android:layout_below="@+id/dataTxt"/>
 
-    <TextView
-        android:id="@+id/tituloTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Digite um Titulo..."
-        android:layout_below="@+id/libeBottomAutor"
-        android:onClick="modalNovoTitulo"/>
-    <LinearLayout
-        android:id="@+id/libeBottomTitulo"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:background="@color/gray"
-        android:layout_below="@+id/tituloTxt"/>
+            <TextView
+                android:id="@+id/autorTxt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Digite um Autor..."
+                android:layout_below="@+id/lineBottomData"
+                android:onClick="modalNovoAutor"/>
+            <LinearLayout
+                android:id="@+id/libeBottomAutor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/gray"
+                android:layout_below="@+id/autorTxt"/>
 
-    <TextView
-        android:id="@+id/prefacioTxt"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/link"
-        android:textSize="23dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="Digite um Prefácio..."
-        android:layout_below="@+id/libeBottomTitulo"
-        android:onClick="modalNovoPrefacio"/>
-    <LinearLayout
-        android:id="@+id/libeBottomPrefacio"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        android:background="@color/gray"
-        android:layout_below="@+id/prefacioTxt"/>
+            <TextView
+                android:id="@+id/tituloTxt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Digite um Titulo..."
+                android:layout_below="@+id/libeBottomAutor"
+                android:onClick="modalNovoTitulo"/>
+            <LinearLayout
+                android:id="@+id/libeBottomTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/gray"
+                android:layout_below="@+id/tituloTxt"/>
 
-
+            <TextView
+                android:id="@+id/prefacioTxt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/link"
+                android:textSize="23dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Digite um Prefácio..."
+                android:layout_below="@+id/libeBottomTitulo"
+                android:onClick="modalNovoPrefacio"/>
+            <LinearLayout
+                android:id="@+id/libeBottomPrefacio"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/gray"
+                android:layout_below="@+id/prefacioTxt"/>
+        </RelativeLayout>
+    </ScrollView>
 
     <io.github.yuweiguocn.lib.squareloading.SquareLoading
         android:id="@+id/loading"
@@ -175,6 +184,5 @@
         app:xCount="4"
         app:yCount="3"
         android:visibility="gone"/>
-
 
 </RelativeLayout>

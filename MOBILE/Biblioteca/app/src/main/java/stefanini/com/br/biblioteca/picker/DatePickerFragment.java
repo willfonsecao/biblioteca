@@ -15,7 +15,7 @@ import java.util.Date;
 public  class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
-    public static Date dataSelecionada;
+    public Date dataSelecionada;
     public TextView campoTxt;
 
     @Override

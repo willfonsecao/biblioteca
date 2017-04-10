@@ -11,7 +11,7 @@ public class Livro implements Serializable {
     private String titulo;
     private String prefacio;
     private String autor;
-    private Date dataPublicacao;
+    private String dataPublicacao;
 
     public Long getId() {
         return id;
@@ -61,11 +61,11 @@ public class Livro implements Serializable {
         this.autor = autor;
     }
 
-    public Date getDataPublicacao() {
+    public String getDataPublicacao() {
         return dataPublicacao;
     }
 
-    public void setDataPublicacao(Date dataPublicacao) {
+    public void setDataPublicacao(String dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
 }

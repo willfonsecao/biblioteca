@@ -10,14 +10,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.MyOptionsPickerView;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import Http.HttpClientFactory;
 import io.github.yuweiguocn.lib.squareloading.SquareLoading;
@@ -34,52 +40,66 @@ import stefanini.com.br.biblioteca.picker.TwoStepPickerDialog;
 
 public class NovoLivroActivity extends AppCompatActivity {
 
-    MyOptionsPickerView singlePicker;
+
     private boolean isCategoriaPicker = false;
     private boolean isNovoAutor = false;
     private boolean isNovoTitulo = false;
     List<Categoria> categorias = new ArrayList<>();
     List<Editora> editoras = new ArrayList<>();
     Livro novoLivro = new Livro();
-    SquareLoading loading;
     TextView categoriaTitulo;
     TextView editoraTitulo;
+    TextView dataTitulo;
+    TextView autorTitulo;
+    TextView tituloLivro;
+    TextView prefacio;
+    ImageView btSalvar;
     TwoStepPickerDialog pickThing = null;
-    EditText conteudo;
+    DatePickerFragment datePicker;
+    MyOptionsPickerView singlePicker;
+    SquareLoading loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        conteudo = (EditText) findViewById(R.id.conteudoModal);
         setContentView(R.layout.activity_novo_livro);
         categoriaTitulo = (TextView) findViewById(R.id.categoriaTxt);
         editoraTitulo = (TextView) findViewById(R.id.editoraTxt);
-        singlePicker = new MyOptionsPickerView(NovoLivroActivity.this);
-        loading = (SquareLoading) findViewById(R.id.loading);
-        loading.setVisibility(View.VISIBLE);
+        dataTitulo = (TextView) findViewById(R.id.dataTxt);
+        autorTitulo = (TextView) findViewById(R.id.autorTxt);
+        tituloLivro = (TextView) findViewById(R.id.tituloTxt);
+        prefacio = (TextView) findViewById(R.id.prefacioTxt);
+        btSalvar = (ImageView)findViewById(R.id.btSalvar);
 
-        categoriaTitulo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isCategoriaPicker = true;
-                createPicker();
-                pickThing.show();
-            }
-        });
-        editoraTitulo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isCategoriaPicker = false;
-                createPicker();
-                pickThing.show();
-            }
-        });
+            singlePicker = new MyOptionsPickerView(NovoLivroActivity.this);
+            datePicker = new DatePickerFragment();
+            loading = (SquareLoading) findViewById(R.id.loading);
+            loading.setVisibility(View.VISIBLE);
 
-        new CategoriasConsumer().execute();
+            categoriaTitulo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    isCategoriaPicker = true;
+                    createPicker();
+                    pickThing.show();
+                }
+            });
+            editoraTitulo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    isCategoriaPicker = false;
+                    createPicker();
+                    pickThing.show();
+                }
+            });
+            new CategoriasConsumer().execute();
+
     }
 
     public void salvar(View v){
+        novoLivro.setDataPublicacao(dataTitulo.getText().toString());
         if(isLivroPopulado()){
+            loading.setVisibility(View.VISIBLE);
             new LivroConsumer().execute();
         }else{
             Toast.makeText(getApplicationContext(),"Preencha todos os filtros",Toast.LENGTH_LONG);
@@ -96,21 +116,30 @@ public class NovoLivroActivity extends AppCompatActivity {
         criarModal();
     }
     public void modalNovoTitulo(View v){
-        this.isNovoAutor = true;
+        this.isNovoTitulo = true;
         criarModal();
     }
     public void modalNovoPrefacio(View v){
-        this.isNovoAutor = true;
         criarModal();
     }
 
     private void criarModal() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.modal_novo_nome, null))
+        final View view = (View) inflater.inflate(R.layout.modal_novo_nome, null);
+        TextView titulo = (TextView) view.findViewById(R.id.tituloModal);
+        if(isNovoAutor){
+            titulo.setText("Novo Autor");
+        }else if(isNovoTitulo){
+            titulo.setText("Novo Titulo");
+        }else{
+            titulo.setText("Novo Prefácio");
+        }
+        builder.setView(view)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                       EditText conteudo = (EditText) view.findViewById(R.id.conteudoModal);
                         if(!(conteudo.getText() == null || conteudo.getText().equals(""))){
                             if(isNovoAutor){
                                 TextView autor = (TextView)findViewById(R.id.autorTxt);
@@ -145,7 +174,6 @@ public class NovoLivroActivity extends AppCompatActivity {
     }
 
     public void selecionarData(View v){
-        DatePickerFragment datePicker = new DatePickerFragment();
         datePicker.campoTxt = (TextView)findViewById(R.id.dataTxt);
         datePicker.show(getFragmentManager(),"Data de Publicação");
     }
@@ -291,9 +319,9 @@ public class NovoLivroActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            loading.setVisibility(View.GONE);
             Intent i = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(i);
         }
     }
-
 }

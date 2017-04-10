@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="10dp">
+
+    <ImageView
+        android:id="@+id/book"
+        android:layout_width="70dp"
+        android:layout_height="75dp"
+        android:layout_alignBottom="@+id/lblAutor"
+        android:src="@drawable/ic_book"/>
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TITULO DO LIVRO"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Categoria:"
+        android:textColor="@color/black"
+        android:layout_below="@+id/titulo"
+        android:layout_toRightOf="@+id/book"
+        android:id="@+id/lblCategoria" />
+    <TextView
+        android:id="@+id/categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/lblCategoria"
+        android:layout_below="@+id/titulo"
+        android:text="Infântil"/>
+
+    <TextView
+        android:id="@+id/lblEditora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblCategoria"
+        android:layout_toRightOf="@+id/book"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Editora:"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/editora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lblEditora"
+        android:layout_below="@+id/lblCategoria"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Abril"/>
+
+    <TextView
+        android:id="@+id/lblData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblEditora"
+        android:layout_toRightOf="@+id/book"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/black"
+        android:text="Data de Publicação:"/>
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lblData"
+        android:layout_below="@+id/lblEditora"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="25/25/2522"/>
+
+    <TextView
+        android:id="@+id/lblAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/book"
+        android:layout_below="@+id/lblData"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/black"
+        android:text="Autor:"/>
+    <TextView
+        android:id="@+id/autor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblData"
+        android:layout_toRightOf="@+id/lblAutor"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="Autor"/>
+
+    <TextView
+        android:id="@+id/lblPrefacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblAutor"
+        android:layout_toRightOf="@+id/book"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/black"
+        android:text="Prefácio:"/>
+    <TextView
+        android:id="@+id/prefacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lblPrefacio"
+        android:layout_below="@+id/lblAutor"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="tex tex te sta as sda "/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/prefacio"/>
+
+
+</RelativeLayout>

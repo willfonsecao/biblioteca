@@ -15,7 +15,7 @@ public class LivroService {
 	private LivroRepository livroRepository;
 	
 	public List<Livro> findAll() {
-		return this.livroRepository.findAll();
+		return this.livroRepository.buscarTodos();
 	}
 	
 	public Livro save(Livro livro) {

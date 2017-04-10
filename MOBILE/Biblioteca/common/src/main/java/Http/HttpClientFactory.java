@@ -18,7 +18,7 @@ public final class HttpClientFactory {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.17.10.97:8080")
+                    .baseUrl("http://10.17.10.90:8080")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient.build())
                     .build();

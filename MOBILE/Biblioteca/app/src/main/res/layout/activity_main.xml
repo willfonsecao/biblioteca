@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -134,4 +135,17 @@
                 android:onClick="verLivros"/>
         </RelativeLayout>
     </RelativeLayout>
+
+    <io.github.yuweiguocn.lib.squareloading.SquareLoading
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackTransparent"
+        app:squareColor="@android:color/white"
+        app:squareSize="12dp"
+        app:squareCorner="2dp"
+        app:dividerSize="2dp"
+        app:xCount="4"
+        app:yCount="3"
+        android:visibility="gone"/>
 </RelativeLayout>
