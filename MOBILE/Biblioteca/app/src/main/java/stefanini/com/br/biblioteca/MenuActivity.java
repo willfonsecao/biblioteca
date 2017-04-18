@@ -12,7 +12,7 @@ public class MenuActivity  {
     ImageView image;
 
     public MenuActivity(final Context context, Activity activity){
-        image = (ImageView) activity.findViewById(R.id.logo);
+        image = (ImageView) activity.findViewById(R.id.logoMenu);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override

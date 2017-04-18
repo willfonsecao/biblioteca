@@ -14,8 +14,10 @@ import Http.HttpClientFactory;
 import io.github.yuweiguocn.lib.squareloading.SquareLoading;
 import model.Categoria;
 import model.Editora;
+import model.Livro;
 import service.CategoriaService;
 import service.EditoraService;
+import service.LivroService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +55,36 @@ public class MainActivity extends AppCompatActivity {
     public void verEditoras(View view){
         loading.setVisibility(View.VISIBLE);
         new EditorasConsumer().execute();
+    }
+
+    public void verLivros(View v){
+        loading.setVisibility(View.VISIBLE);
+        ListActivity.isVerLivros = true;
+        new LivrosConsumer().execute();
+    }
+
+    private class LivrosConsumer extends AsyncTask<Void, Void, List<Livro>> {
+        final LivroService livroService = HttpClientFactory.getHttpClient().create(LivroService.class);
+        List<Livro> livros = new ArrayList<>();
+
+        @Override
+        protected List<Livro> doInBackground(Void... params) {
+            try {
+                livros = livroService.buscarTodos().execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return livros;
+        }
+
+        @Override
+        protected void onPostExecute(List<Livro> livros) {
+            super.onPostExecute(livros);
+            loading.setVisibility(View.GONE);
+            Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+            intent.putExtra("LIVROS", new ArrayList<Livro>(livros));
+            startActivity(intent);
+        }
     }
 
     private class EditorasConsumer extends AsyncTask<Void, Void, List<Editora>> {

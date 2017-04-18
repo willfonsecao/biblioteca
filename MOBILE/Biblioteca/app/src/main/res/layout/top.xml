@@ -24,7 +24,7 @@
         android:layout_width="50dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_logo"
-        android:id="@+id/logo"
+        android:id="@+id/logoMenu"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@+id/topBar"
         android:layout_marginTop="5dp"/>

@@ -14,6 +14,8 @@ import java.util.List;
 
 import model.Categoria;
 import model.Editora;
+import model.Livro;
+import stefanini.com.br.biblioteca.adapter.LivrosAdapter;
 
 
 public class ListActivity extends AppCompatActivity {
@@ -21,8 +23,10 @@ public class ListActivity extends AppCompatActivity {
     String nomeEscolhido;
     ArrayList<Categoria> categorias;
     ArrayList<Editora> editoras;
+    ArrayList<Livro> livros;
     public static boolean isNovoLivro = false;
     public static boolean isCategorias = false;
+    public static boolean isVerLivros = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,33 +37,40 @@ public class ListActivity extends AppCompatActivity {
 
         categorias = (ArrayList<Categoria>) getIntent().getSerializableExtra("CATEGORIAS");
         editoras = (ArrayList<Editora>) getIntent().getSerializableExtra("EDITORAS");
+        livros = (ArrayList<Livro>) getIntent().getSerializableExtra("LIVROS");
 
-        if(isCategorias){
+        if(isCategorias && !isVerLivros){
             nomes =  getNomesCategorias(categorias);
-        }else{
+        }else if(!isCategorias && !isVerLivros){
             nomes = getNomesEditoras(editoras);
         }
 
         ListView listView = (ListView) findViewById(R.id.list);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list, nomes);
-        listView.setAdapter(dataAdapter);
+        if(isVerLivros){
+            LivrosAdapter adapter = new LivrosAdapter(this,livros);
+            listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nomeEscolhido = (String) parent.getAdapter().getItem(position);
-                if(isNovoLivro){
-                    Intent i = new Intent(getApplicationContext(),NovoLivroActivity.class);
-                    if(isCategorias){
-                        Categoria categoriaSelecionada = getCategoriaSelecionada(nomeEscolhido);
-                    }else if(!isCategorias){
-                        Editora editoraSelecionada = getEditoraSelecionada(nomeEscolhido);
+        }else{
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list, nomes);
+            listView.setAdapter(dataAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    nomeEscolhido = (String) parent.getAdapter().getItem(position);
+                    if(isNovoLivro){
+                        Intent i = new Intent(getApplicationContext(),NovoLivroActivity.class);
+                        if(isCategorias){
+                            Categoria categoriaSelecionada = getCategoriaSelecionada(nomeEscolhido);
+                        }else if(!isCategorias){
+                            Editora editoraSelecionada = getEditoraSelecionada(nomeEscolhido);
+                        }
+                        startActivity(i);
                     }
-                    startActivity(i);
+                    Toast.makeText(getApplicationContext(),nomeEscolhido,Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(getApplicationContext(),nomeEscolhido,Toast.LENGTH_LONG).show();
-            }
-        });
+            });
+        }
+
     }
 
     private Categoria getCategoriaSelecionada(String nome){
