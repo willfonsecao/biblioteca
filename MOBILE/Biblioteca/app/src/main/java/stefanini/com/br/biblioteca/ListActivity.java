@@ -24,9 +24,9 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Categoria> categorias;
     ArrayList<Editora> editoras;
     ArrayList<Livro> livros;
-    public static boolean isNovoLivro = false;
     public static boolean isCategorias = false;
     public static boolean isVerLivros = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
