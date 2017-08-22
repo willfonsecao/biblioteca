@@ -31,7 +31,9 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
-        menu = new MenuActivity(getApplicationContext(),this);
+        if(menu == null){
+            menu = new MenuActivity(this,this);
+        }
 
         List<String> nomes = new ArrayList<>();
 
@@ -50,6 +52,15 @@ public class ListActivity extends AppCompatActivity {
             LivrosAdapter adapter = new LivrosAdapter(this,livros);
             listView.setAdapter(adapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent i = new Intent(getApplicationContext(),NovoLivroActivity.class);
+                    i.putExtra("LIVRO",(Livro)parent.getAdapter().getItem(position));
+                    startActivity(i);
+                }
+            });
+
         }else{
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list, nomes);
             listView.setAdapter(dataAdapter);
@@ -57,15 +68,6 @@ public class ListActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     nomeEscolhido = (String) parent.getAdapter().getItem(position);
-                    if(isNovoLivro){
-                        Intent i = new Intent(getApplicationContext(),NovoLivroActivity.class);
-                        if(isCategorias){
-                            Categoria categoriaSelecionada = getCategoriaSelecionada(nomeEscolhido);
-                        }else if(!isCategorias){
-                            Editora editoraSelecionada = getEditoraSelecionada(nomeEscolhido);
-                        }
-                        startActivity(i);
-                    }
                     Toast.makeText(getApplicationContext(),nomeEscolhido,Toast.LENGTH_LONG).show();
                 }
             });

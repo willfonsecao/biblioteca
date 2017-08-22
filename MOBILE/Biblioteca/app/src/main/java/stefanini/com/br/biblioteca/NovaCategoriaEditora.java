@@ -31,7 +31,7 @@ public class NovaCategoriaEditora extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_categoria_editora);
-        menu = new MenuActivity(getApplicationContext(),this);
+        menu = new MenuActivity(this,this);
         nomeEntidade = (EditText)findViewById(R.id.nomeEntidade);
         origem = (String) getIntent().getStringExtra("ORIGEM");
         TextView titulo = (TextView) findViewById(R.id.titulo);
@@ -42,7 +42,7 @@ public class NovaCategoriaEditora extends AppCompatActivity {
 
     public void salvar(View v){
         nome = nomeEntidade.getText().toString();
-        if(nome == null){
+        if(nome == null || nome.isEmpty()){
             Toast.makeText(getApplicationContext(),"Digite um nome",Toast.LENGTH_LONG).show();
         }else{
             if(isCategoria){

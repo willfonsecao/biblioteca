@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MenuActivity menu = new MenuActivity(this,this);
         loading = (SquareLoading) findViewById(R.id.loading);
     }
 

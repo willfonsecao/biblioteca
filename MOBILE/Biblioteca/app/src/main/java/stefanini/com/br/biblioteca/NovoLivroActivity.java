@@ -52,6 +52,7 @@ public class NovoLivroActivity extends AppCompatActivity {
     TextView dataTitulo;
     TextView autorTitulo;
     TextView tituloLivro;
+    TextView tituloTela;
     TextView prefacio;
     ImageView btSalvar;
     TwoStepPickerDialog pickThing = null;
@@ -63,6 +64,7 @@ public class NovoLivroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_livro);
+        MenuActivity menu = new MenuActivity(this,this);
         categoriaTitulo = (TextView) findViewById(R.id.categoriaTxt);
         editoraTitulo = (TextView) findViewById(R.id.editoraTxt);
         dataTitulo = (TextView) findViewById(R.id.dataTxt);
@@ -70,6 +72,7 @@ public class NovoLivroActivity extends AppCompatActivity {
         tituloLivro = (TextView) findViewById(R.id.tituloTxt);
         prefacio = (TextView) findViewById(R.id.prefacioTxt);
         btSalvar = (ImageView)findViewById(R.id.btSalvar);
+        tituloTela = (TextView) findViewById(R.id.titulo);
 
             singlePicker = new MyOptionsPickerView(NovoLivroActivity.this);
             datePicker = new DatePickerFragment();
@@ -92,10 +95,28 @@ public class NovoLivroActivity extends AppCompatActivity {
                     pickThing.show();
                 }
             });
+
+        if(getIntent().getSerializableExtra("LIVRO") != null){
+            this.novoLivro = (Livro) getIntent().getSerializableExtra("LIVRO");
+            this.categoriaTitulo.setText(novoLivro.getCategoria().getNome());
+            this.editoraTitulo.setText(novoLivro.getEditora().getNome());
+            this.dataTitulo.setText(String.format(novoLivro.getDataPublicacao(), "DD/MM/YYYY"));
+            this.autorTitulo.setText(novoLivro.getAutor());
+            this.tituloLivro.setText(novoLivro.getTitulo());
+            this.prefacio.setText(novoLivro.getPrefacio());
+            this.tituloTela.setText("Editar Livro");
+            this.setTextViewPreto(categoriaTitulo,editoraTitulo,dataTitulo,autorTitulo,tituloLivro,prefacio);
+        }
             new CategoriasConsumer().execute();
 
     }
 
+    private void setTextViewPreto(TextView...views){
+        for (TextView view :views) {
+            view.setTextColor(Color.BLACK);
+        }
+
+    }
     public void salvar(View v){
         novoLivro.setDataPublicacao(dataTitulo.getText().toString());
         if(isLivroPopulado()){
