@@ -1,0 +1,1 @@
+{"output":"src/main/java","platform":"iOS","bindings":[{"type":"header","name":"ViewController","objcClassGenerationMode":"Binding","headerPath":"xcode/ios","headerSearchPaths":[],"userHeaderSearchPaths":[],"frameworkSearchPaths":[],"packageBase":"biblioteca.ios","importCode":"#import \"ViewController.h\"\n#import \"ViewSegue2Controller.h\""}]}

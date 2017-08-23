@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segue 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Url-eZ-z7L">
+                                <rect key="frame" x="110" y="20" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvD-Mt-g8D">
+                                <rect key="frame" x="60" y="49" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Kxn-Zc-hTk"/>
+                                </constraints>
+                                <state key="normal" title="Send to Segue 2"/>
+                                <connections>
+                                    <action selector="sendToSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4F2-Q1-eiU"/>
+                                    <segue destination="4cH-4O-zal" kind="show" identifier="toSegue2" id="SlS-F9-Pvq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="DvD-Mt-g8D" secondAttribute="trailing" constant="44" id="2D2-6N-E8a"/>
+                            <constraint firstItem="DvD-Mt-g8D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="44" id="4XE-jS-us6"/>
+                            <constraint firstItem="DvD-Mt-g8D" firstAttribute="top" secondItem="Url-eZ-z7L" secondAttribute="bottom" constant="8" id="AUn-jV-M2r"/>
+                            <constraint firstItem="Url-eZ-z7L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="94" id="b7o-Rg-gBW"/>
+                            <constraint firstItem="Url-eZ-z7L" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pEl-RV-TjC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Url-eZ-z7L" secondAttribute="trailing" constant="94" id="rcB-zJ-Bnb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titulo" destination="Url-eZ-z7L" id="gPh-Qn-t68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596.25" y="-13.75"/>
+        </scene>
+        <!--View Segue2 Controller-->
+        <scene sceneID="o6m-Pf-LfD">
+            <objects>
+                <viewController id="4cH-4O-zal" customClass="ViewSegue2Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rlm-B1-hss"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZR3-FM-otF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y6u-7p-pX2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segue 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfK-kE-rBD">
+                                <rect key="frame" x="110" y="20" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="j2o-aj-cDt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcE-r5-jQg">
+                                <rect key="frame" x="60" y="49" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="UwD-ep-WHi"/>
+                                </constraints>
+                                <state key="normal" title="Send to Segue 1"/>
+                                <connections>
+                                    <action selector="sendToSegue:" destination="4cH-4O-zal" eventType="touchUpInside" id="z4X-a2-zrr"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toSegue1" id="ffv-6U-J0S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pcE-r5-jQg" firstAttribute="centerX" secondItem="qfK-kE-rBD" secondAttribute="centerX" id="2G4-ua-W3c"/>
+                            <constraint firstItem="qfK-kE-rBD" firstAttribute="leading" secondItem="y6u-7p-pX2" secondAttribute="leadingMargin" constant="94" id="PDb-BL-vOo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qfK-kE-rBD" secondAttribute="trailing" constant="94" id="cvP-n2-kaU"/>
+                            <constraint firstItem="pcE-r5-jQg" firstAttribute="top" secondItem="qfK-kE-rBD" secondAttribute="bottom" constant="8" symbolic="YES" id="tYj-Ce-fDC"/>
+                            <constraint firstItem="qfK-kE-rBD" firstAttribute="top" secondItem="rlm-B1-hss" secondAttribute="bottom" id="taL-5B-KCT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titulo" destination="qfK-kE-rBD" id="Gxk-U3-r2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ou-rC-YEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="233" y="-113"/>
+        </scene>
+    </scenes>
+</document>
